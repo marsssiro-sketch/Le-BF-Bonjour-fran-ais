@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyage en francophonie</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5fb;
+  color: #26334a;
+}
+header {
+  background: #174b70;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 15px;
+}
+.card {
+  background: white;
+  padding: 22px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px #ddd;
+}
+h2 { color: #174b70; }
+.country {
+  display: inline-block;
+  background: #e8f0f8;
+  padding: 12px;
+  margin: 7px;
+  border-radius: 10px;
+}
+button {
+  background: #174b70;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover { background: #287da8; }
+footer {
+  background: #174b70;
+  color: white;
+  text-align: center;
+  padding: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌍 Voyage en francophonie</h1>
+<p>Explore les pays, les cultures et les langues du monde francophone !</p>
+</header>
+
+<main>
+
+<div class="card">
+<h2>✈️ Bienvenue dans notre voyage !</h2>
+<p>
+Le français est parlé sur plusieurs continents.
+Partons à la découverte de quelques pays francophones
+et de leurs richesses culturelles.
+</p>
+</div>
+
+<div class="card">
+<h2>🌎 Nos destinations</h2>
+
+<div class="country">
+<h3>🇨🇮 Côte d'Ivoire</h3>
+<p>Capitale politique : Yamoussoukro</p>
+<p>Continent : Afrique</p>
+</div>
+
+<div class="country">
+<h3>🇫🇷 France</h3>
+<p>Capitale : Paris</p>
+<p>Continent : Europe</p>
+</div>
+
+<div class="country">
+<h3>🇰🇭 Cambodge</h3>
+<p>Capitale : Phnom Penh</p>
+<p>Langue officielle : khmer</p>
+</div>
+
+<div class="country">
+<h3>🇸🇳 Sénégal</h3>
+<p>Capitale : Dakar</p>
+<p>Continent : Afrique</p>
+</div>
+
+<div class="country">
+<h3>🇨🇦 Canada</h3>
+<p>Capitale : Ottawa</p>
+<p>Continent : Amérique</p>
+</div>
+</div>
+
+<div class="card">
+<h2>🗣️ Expressions du monde francophone</h2>
+<p><strong>En Côte d'Ivoire :</strong> « Y a pas drap ! » signifie qu'il n'y a pas de problème.</p>
+<p><strong>En France :</strong> « Ça marche ! » signifie que l'on est d'accord.</p>
+<p><strong>Au Sénégal :</strong> « Teranga » évoque l'hospitalité.</p>
+</div>
+
+<div class="card">
+<h2>🎯 Quiz : connais-tu la francophonie ?</h2>
+
+<p>1. Quelle est la capitale de la Côte d'Ivoire ?</p>
+<label><input type="radio" name="q1" value="a"> Abidjan</label><br>
+<label><input type="radio" name="q1" value="b"> Yamoussoukro</label><br>
+
+<p>2. Quelle est la capitale du Cambodge ?</p>
+<label><input type="radio" name="q2" value="a"> Phnom Penh</label><br>
+<label><input type="radio" name="q2" value="b"> Siem Reap</label><br>
+
+<p>3. Sur quel continent se trouve la France ?</p>
+<label><input type="radio" name="q3" value="a"> Afrique</label><br>
+<label><input type="radio" name="q3" value="b"> Europe</label><br>
+
+<br>
+<button onclick="corriger()">Vérifier mes réponses</button>
+<p id="resultat"></p>
+</div>
+
+</main>
+
+<footer>
+<p>Français en action ! | Apprendre, découvrir, partager.</p>
+<a href="index.html" style="color:white;">Retour à l'accueil</a>
+</footer>
+
+<script>
+function corriger() {
+let score = 0;
+if(document.querySelector('input[name="q1"]:checked')?.value === "b") score++;
+if(document.querySelector('input[name="q2"]:checked')?.value === "a") score++;
+if(document.querySelector('input[name="q3"]:checked')?.value === "b") score++;
+
+document.getElementById("resultat").innerHTML =
+"Ton score : " + score + "/3. " +
+(score === 3 ? "Excellent ! 🎉" : "Continue à apprendre ! 💪");
+}
+</script>
+
+</body>
+</html>
