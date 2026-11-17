@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Écoutons un dialogue | Français en action</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5fb;
+  color: #26334a;
+}
+header {
+  background: #174b70;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+main {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 15px;
+}
+.card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px #00000012;
+}
+button {
+  background: #174b70;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+}
+button:hover {
+  background: #2676a8;
+}
+.question {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f1f5fb;
+  border-radius: 10px;
+}
+label {
+  display: block;
+  margin: 10px;
+  cursor: pointer;
+}
+#resultat {
+  font-weight: bold;
+  margin-top: 15px;
+}
+footer {
+  text-align: center;
+  background: #174b70;
+  color: white;
+  padding: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎙️ Écoutons un dialogue !</h1>
+<p>Comprendre une conversation de la vie quotidienne</p>
+<p>Niveau A1 – A2</p>
+</header>
+
+<main>
+
+<p><a href="oreilles.html">← Retour aux activités</a></p>
+
+<section class="card">
+<h2>🎯 Objectif</h2>
+<p>Écouter une conversation, identifier les informations importantes et répondre aux questions.</p>
+</section>
+
+<section class="card">
+<h2>🎧 1. Écoute le dialogue</h2>
+<p>Deux amis se rencontrent dans la cour de leur lycée.</p>
+
+<button onclick="ecouter()">▶ Écouter le dialogue</button>
+<button onclick="arreter()">⏹ Arrêter</button>
+
+<p id="statut">Clique sur « Écouter le dialogue » pour commencer.</p>
+
+<details>
+<summary>📖 Afficher la transcription</summary>
+<p><strong>Sara :</strong> Bonjour Paul ! Comment vas-tu ?</p>
+<p><strong>Paul :</strong> Très bien, merci. Et toi ?</p>
+<p><strong>Sara :</strong> Ça va bien. Tu vas où après les cours ?</p>
+<p><strong>Paul :</strong> Je vais à la bibliothèque pour faire mes devoirs.</p>
+<p><strong>Sara :</strong> Ah, très bien ! Tu veux travailler avec moi ?</p>
+<p><strong>Paul :</strong> Avec plaisir ! On se retrouve à 14 heures ?</p>
+<p><strong>Sara :</strong> D'accord. À tout à l'heure !</p>
+<p><strong>Paul :</strong> À tout à l'heure, Sara !</p>
+</details>
+</section>
+
+<section class="card">
+<h2>📝 2. Vérifie ta compréhension</h2>
+<p>Choisis la bonne réponse pour chaque question.</p>
+
+<form id="quiz">
+
+<div class="question">
+<p><strong>1. Qui sont les personnages ?</strong></p>
+<label><input type="radio" name="q1" value="a"> Sara et Paul</label>
+<label><input type="radio" name="q1" value="b"> Sara et Pierre</label>
+<label><input type="radio" name="q1" value="c"> Paul et Marie</label>
+</div>
+
+<div class="question">
+<p><strong>2. Où Paul veut-il aller ?</strong></p>
+<label><input type="radio" name="q2" value="a"> Au marché</label>
+<label><input type="radio" name="q2" value="b"> À la bibliothèque</label>
+<label><input type="radio" name="q2" value="c"> À la maison</label>
+</div>
+
+<div class="question">
+<p><strong>3. Pourquoi Paul va-t-il à la bibliothèque ?</strong></p>
+<label><input type="radio" name="q3" value="a"> Pour lire un journal</label>
+<label><input type="radio" name="q3" value="b"> Pour rencontrer son professeur</label>
+<label><input type="radio" name="q3" value="c"> Pour faire ses devoirs</label>
+</div>
+
+<div class="question">
+<p><strong>4. À quelle heure vont-ils se retrouver ?</strong></p>
+<label><input type="radio" name="q4" value="a"> À 10 heures</label>
+<label><input type="radio" name="q4" value="b"> À 14 heures</label>
+<label><input type="radio" name="q4" value="c"> À 16 heures</label>
+</div>
+
+<button type="button" onclick="corriger()">Vérifier mes réponses</button>
+<button type="reset" onclick="document.getElementById('resultat').innerHTML=''">Recommencer</button>
+
+</form>
+
+<div id="resultat"></div>
+</section>
+
+<section class="card">
+<h2>⭐ Bravo !</h2>
+<p>Continue à écouter, apprendre et progresser en français.</p>
+<a href="oreilles.html">Retour à « À vos oreilles ! »</a>
+</section>
+
+</main>
+
+<footer>
+Français en action ! | Apprendre, découvrir, partager.
+</footer>
+
+<script>
+const dialogue = [
+"Bonjour Paul ! Comment vas-tu ?",
+"Très bien, merci. Et toi ?",
+"Ça va bien. Tu vas où après les cours ?",
+"Je vais à la bibliothèque pour faire mes devoirs.",
+"Ah, très bien ! Tu veux travailler avec moi ?",
+"Avec plaisir ! On se retrouve à 14 heures ?",
+"D'accord. À tout à l'heure !",
+"À tout à l'heure, Sara !"
+];
+
+let index = 0;
+
+function ecouter() {
+  if (!('speechSynthesis' in window)) {
+    document.getElementById("statut").textContent =
+    "La lecture audio n'est pas disponible sur ce navigateur. Consulte la transcription.";
+    return;
+  }
+
+  speechSynthesis.cancel();
+  index = 0;
+  document.getElementById("statut").textContent = "Lecture du dialogue en cours...";
+
+  function prochainePhrase() {
+    if (index >= dialogue.length) {
+      document.getElementById("statut").textContent = "Fin du dialogue !";
+      return;
+    }
+
+    let voix = new SpeechSynthesisUtterance(dialogue[index]);
+    voix.lang = "fr-FR";
+    voix.rate = 0.85;
+    voix.onend = function() {
+      index++;
+      prochainePhrase();
+    };
+    voix.onerror = function() {
+      document.getElementById("statut").textContent =
+      "La lecture audio a rencontré un problème. Consulte la transcription.";
+    };
+    speechSynthesis.speak(voix);
+  }
+
+  prochainePhrase();
+}
+
+function arreter() {
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+  }
+  document.getElementById("statut").textContent = "Lecture arrêtée.";
+}
+
+function corriger() {
+  const reponses = {
+    q1: "a",
+    q2: "b",
+    q3: "c",
+    q4: "b"
+  };
+
+  let score = 0;
+
+  for (let question in reponses) {
+    let choix = document.querySelector(
+      'input[name="' + question + '"]:checked'
+    );
+    if (choix && choix.value === reponses[question]) {
+      score++;
+    }
+  }
+
+  let message = "Tu as obtenu " + score + " / 4.";
+
+  if (score === 4) {
+    message += " Excellent ! Félicitations ! 🏆";
+  } else if (score >= 2) {
+    message += " Très bien ! Continue tes efforts. 👏";
+  } else {
+    message += " Courage ! Réécoute le dialogue et réessaie. 💪";
+  }
+
+  document.getElementById("resultat").textContent = message;
+}
+</script>
+
+</body>
+</html>
